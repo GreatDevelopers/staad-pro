@@ -1,3 +1,7 @@
+STAAD PLANE
+*
+* ___*** 1st line has to start with STAAD !!! ***___
+*
 * Let us learn STAAD Pro as Hacker
 * If you are Geek, like coding, you may like this approach
 * Copy right: H.S.Rai
@@ -10,7 +14,6 @@
 * All lines starting with "*" is a comment, only for reader, and
 * STAAD Pro software will ignore all such lines.
 *
-STAAD PLANE
 * Information related to JOB you are undertaking and team working on
 * JOB is given in a block "JOB INFORMATION" which includes all lines
 * between line "START JOB INFORMATION" and "END JOB INFORMATION"
@@ -60,8 +63,14 @@ INPUT WIDTH 79
 UNIT MMS NEWTON
 JOINT COORDINATES
 1 0 0 0; 2 4500 0 0;
+* Following define members of frame (Beam or Column), 1st number is
+* member number, and next two are starting node (Joint) number and
+* end node number, terminatin by ";", to enable multiple member
+* definition in a line.
 MEMBER INCIDENCES
 1 1 2;
+* Material properties to be used in analysis, many materila may be
+* defined in block names "DEFINE MATERIAL", between START AND END.
 DEFINE MATERIAL START
 ISOTROPIC CONCRETE
 E 21718.5
@@ -72,24 +81,42 @@ DAMP 0.05
 TYPE CONCRETE
 STRENGTH FCU 25
 END DEFINE MATERIAL
+* Geometric (X-Sectional) properties of various sections used
 MEMBER PROPERTY AMERICAN
 1 PRIS YD 500 ZD 300
+* BETA defines orientation of section for members
 CONSTANTS
+BETA 0 ALL
+* Material assigned to various members
 MATERIAL CONCRETE ALL
+* Support conditions: Simply supported, so both are taken as pinned.
 SUPPORTS
-1 2 PINNED
-LOAD 1 LOADTYPE Live  TITLE LIVE L:OAD
+1 PINNED
+2 FIXED BUT FX MZ
+* Load Definitions
+LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
 MEMBER LOAD
+* UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
+* axis
 1 UNI GY -50
+* Do analysis and prind maximin information
 PERFORM ANALYSIS PRINT ALL
+* For RCC design: Ablock between start and end of "Concrete Design"
+* Use IS 456
 START CONCRETE DESIGN
 CODE INDIAN
+* Clear cover, fck (Concrete grade), fy for main and secondary reinforcement.
 CLEAR 40 ALL
 FC 20 ALL
 FYMAIN 415 ALL
 FYSEC 415 ALL
+* Track governs amount of information you wish to have. Use 2 for maximum
 TRACK 2 ALL
+* Specify members you wish to design as beam
 DESIGN BEAM 1
+* To know quantites used (may be used for estimation / cost analysis).
 CONCRETE TAKE
+* To finish RCC design
 END CONCRETE DESIGN
+* To tell end of STADD Pro file.
 FINISH
