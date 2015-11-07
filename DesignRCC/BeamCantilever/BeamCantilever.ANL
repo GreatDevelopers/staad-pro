@@ -1,0 +1,359 @@
+                                                                 PAGE NO.    1
+
+
+
+             ****************************************************        
+             *                                                  *        
+             *           STAAD.Pro V8i SELECTseries4            *        
+             *           Version  20.07.09.31                   *        
+             *           Proprietary Program of                 *        
+             *           Bentley Systems, Inc.                  *        
+             *           Date=    NOV  7, 2015                  *        
+             *           Time=    16:12:58                      *        
+             *                                                  *        
+             *      USER ID:                                    *        
+             ****************************************************        
+
+
+
+     1. STAAD PLANE
+INPUT FILE: BeamCantilever.STD
+     2. *
+     3. * ___*** 1ST LINE HAS TO START WITH STAAD !!! ***___
+     4. *
+     5. * LET US LEARN STAAD PRO AS HACKER
+     6. * IF YOU ARE GEEK, LIKE CODING, YOU MAY LIKE THIS APPROACH
+     7. * COPY RIGHT: H.S.RAI
+     8. *
+     9. * THE 1ST COMMAND START WITH STAAD AND 2ND WORD SPECIFY TYPE OF PROBLEM
+    10. * YOU ARE ATTEMPTING TO SOLVE. IT MAY BE PLANE, SPACE, GIRD, TRUSS
+    11. * THE 1ST PROBLEM WE ARE GOING TO SOLVE IS A SIMPLY SUPPORTED BEAM
+    12. * SO WE USE PLANE, THAT IS MEANT FOR 2D FRAME STRUCTURES.
+    13. *
+    14. * ALL LINES STARTING WITH "*" IS A COMMENT, ONLY FOR READER, AND
+    15. * STAAD PRO SOFTWARE WILL IGNORE ALL SUCH LINES.
+    16. *
+    17. * INFORMATION RELATED TO JOB YOU ARE UNDERTAKING AND TEAM WORKING ON
+    18. * JOB IS GIVEN IN A BLOCK "JOB INFORMATION" WHICH INCLUDES ALL LINES
+    19. * BETWEEN LINE "START JOB INFORMATION" AND "END JOB INFORMATION"
+    20. * JOB INFORMATION STARTS BELOW:
+    21. START JOB INFORMATION
+    22. * NAME OF JOB: IN CURRENT CASE A PROBLEM OF "CANTILEVERED BEAM", SO IS
+    23. * WRITTEN AS "CANTILEVER BEAM":
+    24. JOB NAME CANTILEVER BEAM
+    25. * NAME OF CLIENT IS TYPED AFTER CLIENT AS SHOWN BELOW
+    26. JOB CLIENT HARDEEP SINGH RAI
+    27. * JOB NUMBER, IF YOU KEEP RECORD IN YOUR OFFICE, IN XAMPLE, WE USED
+    28. * "PB/LDH/102" AS JOB NUMBER
+    29. JOB NO PB/LDH/102
+    30. * CORRECTIONS /  IMPROVEMENTS RESUTS IN MANY REVISIONS, SO KEEP TRACK
+    31. * OF REVISION IN KEY WORD "REV"
+    32. JOB REV 1.0
+    33. * IF CURRENT ANALYSIS IS FOR A PART OF SOME BIG STRUCTURE, THEN REFER
+    34. * IT AFTER "PART"
+    35. JOB PART BEAM
+    36. * REFERENCE NUMBER, FOR RECORD / DOCUMENTATION PURPOSE
+    37. JOB REF TUTORIAL/01
+    38. * ANY COMMENT FOR YOUR HELP / REFERENCE
+     STAAD PLANE                                              -- PAGE NO.    2
+    *                                           
+    39. JOB COMMENT ANALYSIS OF CANTILEVER BEAM
+    40. * NORMALY A TEAM CONSIST OF ENGINEER, WHO CREATE THIS FILE FOR ANALYSIS
+    41. * AND DESIGN, THEN IT IS CHECKED BY A CHECKER AND FURTHER APPROVED BY
+    42. * THEIR BOSS. NAME OF ENGINEER, CHECKER AND APPROVING AUTHORITY AND
+    43. * DATE OF THEIR ACTION IS RECORDED BELOW:
+    44. ENGINEER NAME HSR
+    45. CHECKER NAME NR
+    46. APPROVED NAME AR
+    47. ENGINEER DATE 07-NOV-15
+    48. CHECKER DATE 07-NOV-15
+    49. APPROVED DATE 07-NOV-15
+    50. END JOB INFORMATION
+    51. * JOB INFORMATION ENDS WITH ABOVE LINE
+    52. * THE LENGTH OF CHARACTERS IN EACH LINE OF THIS INPUT FILE IS LIMITED
+    53. * TO 79.
+    54. * ANY THING WRITTEN AFTER THIS WILL B EIGNORED AND THUS RESULTS IN
+    55. * ERROR WHEN YOU RUN STAAD-PRO
+    56. INPUT WIDTH 79
+    57. * ALL EXAMPLES ARE WITH UNITS METER AND NEWTONS FOR LINEAR DIMENSIONS
+    58. * AND FORCE RESPECTIVELY.
+    59. * THE JOINT (END POINTS OF FRAME MEMBERS, ALSO CALLED "NODE") ARE
+    60. * NUMBERES, AND EACH NUMBER IS FOLLWOED BY X Y Z VALUE OF NODE. EACH
+    61. * ONE SUCH SET IT TERMINATED BY ";" ENABLING YOU TO PUT MORE
+    62. * INFORMATION IN A LINE, LIKE 2 NODES ARE CREATED IN A LINE BELOW:
+    63. UNIT MMS NEWTON
+    64. JOINT COORDINATES
+    65. 1 0 0 0; 2 3000 0 0
+    66. * FOLLOWING DEFINE MEMBERS OF FRAME (BEAM OR COLUMN), 1ST NUMBER IS
+    67. * MEMBER NUMBER, AND NEXT TWO ARE STARTING NODE (JOINT) NUMBER AND
+    68. * END NODE NUMBER, TERMINATIN BY ";", TO ENABLE MULTIPLE MEMBER
+    69. * DEFINITION IN A LINE.
+    70. MEMBER INCIDENCES
+    71. 1 1 2
+    72. * MATERIAL PROPERTIES TO BE USED IN ANALYSIS, MANY MATERILA MAY BE
+    73. * DEFINED IN BLOCK NAMES "DEFINE MATERIAL", BETWEEN START AND END.
+    74. DEFINE MATERIAL START
+    75. ISOTROPIC CONCRETE
+    76. E 22000
+    77. POISSON 0.17
+    78. DENSITY 2.4E-005
+    79. ALPHA 1E-005
+    80. DAMP 0.05
+    81. TYPE CONCRETE
+    82. STRENGTH FCU 25
+    83. END DEFINE MATERIAL
+    84. * GEOMETRIC (X-SECTIONAL) PROPERTIES OF VARIOUS SECTIONS USED
+    85. MEMBER PROPERTY AMERICAN
+    86. 1 PRIS YD 500 ZD 300
+    87. * BETA DEFINES ORIENTATION OF SECTION FOR MEMBERS
+    88. CONSTANTS
+    89. BETA 0 ALL
+    90. * MATERIAL ASSIGNED TO VARIOUS MEMBERS
+    91. MATERIAL CONCRETE ALL
+    92. * SUPPORT CONDITIONS: SIMPLY SUPPORTED, SO BOTH ARE TAKEN AS PINNED.
+    93. SUPPORTS
+    94. 1 FIXED
+     STAAD PLANE                                              -- PAGE NO.    3
+    *                                           
+    95. * LOAD DEFINITIONS
+    96. LOAD 1 LOADTYPE LIVE  TITLE LIVE LOAD
+    97. MEMBER LOAD
+    98. * UDL OF 50 KN/M (N/MM) IN NEGATIVE DIRECTION (I.E DOWNWARD) GLOBAL Y
+    99. * AXIS
+   100. 1 UNI GY -40
+   101. * DO ANALYSIS AND PRIND MAXIMIN INFORMATION
+   102. PERFORM ANALYSIS PRINT ALL
+
+
+
+            P R O B L E M   S T A T I S T I C S
+            -----------------------------------
+
+     NUMBER OF JOINTS          2  NUMBER OF MEMBERS       1
+     NUMBER OF PLATES          0  NUMBER OF SOLIDS        0
+     NUMBER OF SURFACES        0  NUMBER OF SUPPORTS      1
+
+ 
+           SOLVER USED IS THE IN-CORE ADVANCED SOLVER
+ 
+     TOTAL PRIMARY LOAD CASES =     1, TOTAL DEGREES OF FREEDOM =       3
+
+     STAAD PLANE                                              -- PAGE NO.    4
+    *                                           
+
+
+   LOADING     1  LOADTYPE LIVE  TITLE LIVE LOAD                              
+   -----------
+
+
+   MEMBER LOAD - UNIT NEWT MMS 
+
+   MEMBER     UDL      L1     L2      CON       L     LIN1     LIN2
+
+      1   -40.0000 GY   0.00 3000.00
+
+
+FOR LOADING -     1
+APPLIED JOINT EQUIVALENT LOADS
+ JOINT   FORCE-X     FORCE-Y     FORCE-Z      MOM-X       MOM-Y       MOM-Z
+     1 0.00000E+00-6.00000E+04 0.00000E+00 0.00000E+00 0.00000E+00-3.00000E+07
+     2 0.00000E+00-6.00000E+04 0.00000E+00 0.00000E+00 0.00000E+00 3.00000E+07
+
+          STATIC LOAD/REACTION/EQUILIBRIUM SUMMARY FOR CASE NO.     1
+          LOADTYPE LIVE  TITLE LIVE LOAD                              
+
+
+           CENTER OF FORCE BASED ON Y FORCES ONLY (MMS ).
+         (FORCES IN NON-GLOBAL DIRECTIONS WILL INVALIDATE RESULTS)
+
+                        X =  0.149999996E+04
+                        Y =  0.000000000E+00
+                        Z =  0.000000000E+00
+TOTAL APPLIED LOAD     1
+
+   ***TOTAL APPLIED LOAD ( NEWT MMS  ) SUMMARY (LOADING     1 )
+       SUMMATION FORCE-X =           0.00
+       SUMMATION FORCE-Y =     -120000.00
+       SUMMATION FORCE-Z =           0.00
+
+      SUMMATION OF MOMENTS AROUND THE ORIGIN-
+      MX=           0.00  MY=           0.00  MZ=  -179999943.23
+
+TOTAL REACTION LOAD    1
+
+   ***TOTAL REACTION LOAD( NEWT MMS  ) SUMMARY (LOADING     1 )
+       SUMMATION FORCE-X =           0.00
+       SUMMATION FORCE-Y =      120000.00
+       SUMMATION FORCE-Z =           0.00
+
+      SUMMATION OF MOMENTS AROUND THE ORIGIN-
+      MX=           0.00  MY=           0.00  MZ=   179999999.81
+
+
+   MAXIMUM DISPLACEMENTS (  CM  /RADIANS) (LOADING      1)
+             MAXIMUMS    AT NODE
+      X =  0.00000E+00       0
+      Y = -6.04107E-01       2
+      Z =  0.00000E+00       0
+      RX=  0.00000E+00       0
+      RY=  0.00000E+00       0
+      RZ= -2.61818E-03       2
+
+     STAAD PLANE                                              -- PAGE NO.    5
+    *                                           
+
+
+   EXTERNAL AND INTERNAL JOINT LOAD SUMMARY ( NEWT MMS  )-
+
+   JT     EXT FX/   EXT FY/   EXT FZ/    EXT MX/    EXT MY/    EXT MZ/
+          INT FX    INT FY    INT FZ     INT MX     INT MY     INT MZ
+
+                                                                      SUPPORT=1
+     1  0.00E+00 -6.00E+04  0.00E+00  0.000E+00  0.000E+00 -3.000E+07
+        0.00E+00 -6.00E+04  0.00E+00  0.000E+00  0.000E+00 -1.500E+08  111111
+
+
+
+   ************ END OF DATA FROM INTERNAL STORAGE ************
+
+
+   103. * FOR RCC DESIGN: ABLOCK BETWEEN START AND END OF "CONCRETE DESIGN"
+   104. * USE IS 456
+   105. START CONCRETE DESIGN
+CONCRETE DESIGN
+   106. CODE INDIAN
+   107. * CLEAR COVER, FCK (CONCRETE GRADE), FY FOR MAIN AND SECONDARY REINFORCEMENT.
+   108. CLEAR 40 ALL
+   109. FC 20 ALL
+   110. FYMAIN 415 ALL
+   111. FYSEC 415 ALL
+   112. * TRACK GOVERNS AMOUNT OF INFORMATION YOU WISH TO HAVE. USE 2 FOR MAXIMUM
+   113. TRACK 2 ALL
+   114. * SPECIFY MEMBERS YOU WISH TO DESIGN AS BEAM
+   115. DESIGN BEAM 1
+     STAAD PLANE                                              -- PAGE NO.    6
+    *                                           
+
+   ============================================================================
+                  B E A M  N O.       1   D E S I G N  R E S U L T S
+
+         M20                    Fe415 (Main)               Fe415 (Sec.)
+
+       LENGTH:  3000.0 mm      SIZE:   300.0 mm X  500.0 mm   COVER: 40.0 mm
+
+
+                          DESIGN LOAD SUMMARY (KN MET)
+   ----------------------------------------------------------------------------
+   SECTION |FLEXURE  (Maxm. Sagging/Hogging moments)|           SHEAR
+   (in mm) |     P        MZ        MX   Load Case  |    VY       MX  Load Case
+   ----------------------------------------------------------------------------
+       0.0 |     0.00      0.00      0.00     1     |  120.00     0.00      1
+           |     0.00   -180.00      0.00     1     |
+     250.0 |     0.00      0.00      0.00     1     |  110.00     0.00      1
+           |     0.00   -151.25      0.00     1     |
+     500.0 |     0.00      0.00      0.00     1     |  100.00     0.00      1
+           |     0.00   -125.00      0.00     1     |
+     750.0 |     0.00      0.00      0.00     1     |   90.00     0.00      1
+           |     0.00   -101.25      0.00     1     |
+    1000.0 |     0.00      0.00      0.00     1     |   80.00     0.00      1
+           |     0.00    -80.00      0.00     1     |
+    1250.0 |     0.00      0.00      0.00     1     |   70.00     0.00      1
+           |     0.00    -61.25      0.00     1     |
+    1500.0 |     0.00      0.00      0.00     1     |   60.00     0.00      1
+           |     0.00    -45.00      0.00     1     |
+    1750.0 |     0.00      0.00      0.00     1     |   50.00     0.00      1
+           |     0.00    -31.25      0.00     1     |
+    2000.0 |     0.00      0.00      0.00     1     |   40.00     0.00      1
+           |     0.00    -20.00      0.00     1     |
+    2250.0 |     0.00      0.00      0.00     1     |   30.00     0.00      1
+           |     0.00    -11.25      0.00     1     |
+    2500.0 |     0.00      0.00      0.00     1     |   20.00     0.00      1
+           |     0.00     -5.00      0.00     1     |
+    2750.0 |     0.00      0.00      0.00     1     |   10.00     0.00      1
+           |     0.00     -1.25      0.00     1     |
+    3000.0 |     0.00      0.00      0.00     1     |    0.00     0.00      1
+           |     0.00      0.00      0.00     1     |
+   ----------------------------------------------------------------------------
+
+
+
+                        SUMMARY OF REINF. AREA (Sq.mm)
+
+   ----------------------------------------------------------------------------
+   SECTION |          TOP            |         BOTTOM          |    STIRRUPS
+   (in mm) | Reqd./Provided reinf.   | Reqd./Provided reinf.   |   (2 legged)
+   ----------------------------------------------------------------------------
+       0.0 | 1391.11/1407.43( 7-16í )|  124.63/ 235.62( 3-10í )|  8í  @ 300 mm
+     250.0 | 1141.02/1206.37( 6-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+     500.0 |  887.52/1005.31( 5-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+     750.0 |  695.06/ 804.25( 4-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    1000.0 |  534.39/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    1250.0 |  400.14/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    1500.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    1750.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    2000.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    2250.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    2500.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    2750.0 |  307.23/ 603.19( 3-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+    3000.0 |    0.00/ 402.12( 2-16í )|    0.00/ 157.08( 2-10í )|  8í  @ 300 mm
+   ----------------------------------------------------------------------------
+
+
+   ============================================================================
+
+     STAAD PLANE                                              -- PAGE NO.    7
+    *                                           
+
+   ********************END OF BEAM DESIGN RESULTS********************
+
+
+   116. * TO KNOW QUANTITES USED (MAY BE USED FOR ESTIMATION / COST ANALYSIS).
+   117. CONCRETE TAKE
+   118. * TO FINISH RCC DESIGN
+   119. END CONCRETE DESIGN
+     STAAD PLANE                                              -- PAGE NO.    8
+    *                                           
+          **************  CONCRETE  TAKE OFF  **************
+                (FOR BEAMS, COLUMNS AND PLATES DESIGNED ABOVE)
+     NOTE: CONCRETE QUANTITY REPRESENTS VOLUME OF CONCRETE IN BEAMS, COLUMNS, AND PLATES DESIGNED ABOVE.
+           REINFORCING STEEL QUANTITY REPRESENTS REINFORCING STEEL IN BEAMS AND COLUMNS DESIGNED ABOVE.
+           REINFORCING STEEL IN PLATES IS NOT INCLUDED IN THE REPORTED QUANTITY.
+
+          TOTAL VOLUME OF CONCRETE =         0.5 CU.METER
+
+                         BAR DIA         WEIGHT 
+                         (in mm)        (in New)
+                        --------        --------
+                             8                 50
+                             10                38
+                             16               174
+                                     ------------
+                           *** TOTAL=         262
+
+   120. * TO TELL END OF STADD PRO FILE.
+   121. FINISH
+
+
+             *********** END OF THE STAAD.Pro RUN ***********         
+
+               **** DATE= NOV  7,2015   TIME= 16:12:59 ****
+
+         ************************************************************
+         *        For questions on STAAD.Pro, please contact        *
+         *        Bentley Systems or Partner offices                *
+         *                                                          *
+         *            Telephone             Web / Email             *
+         *  USA       +1  (714) 974-2500                            *
+         *  UK        +44 (0) 808 101 9246                          *
+         *  SINGAPORE +65 6225-6158                                 *
+         *  FRANCE    +33 (0) 1 55238400                            *
+         *  GERMANY   +49 0931 40468                                *
+         *  INDIA     +91 (033) 4006-2021                           *
+         *  JAPAN     +81 (03)5952-6500    http://www.ctc-g.co.jp   *
+         *  CHINA     +86 21 6288 4040                              *
+         *  THAILAND  +66 (0)2645-1018/19 partha.p@reisoftwareth.com*
+         *                                                          *
+         *  Worldwide  http://selectservices.bentley.com/en-US/     *
+         *                                                          *
+         ************************************************************
+                                                                     

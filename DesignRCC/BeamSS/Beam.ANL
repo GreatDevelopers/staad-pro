@@ -9,7 +9,7 @@
              *           Proprietary Program of                 *        
              *           Bentley Systems, Inc.                  *        
              *           Date=    NOV  7, 2015                  *        
-             *           Time=    13:52:52                      *        
+             *           Time=    16:13:51                      *        
              *                                                  *        
              *      USER ID:                                    *        
              ****************************************************        
@@ -17,7 +17,7 @@
 
 
      1. STAAD PLANE
-INPUT FILE: BeamSS.STD
+INPUT FILE: Beam.STD
      2. *
      3. * ___*** 1ST LINE HAS TO START WITH STAAD !!! ***___
      4. *
@@ -340,7 +340,7 @@ APPLIED JOINT EQUIVALENT LOADS
 
              *********** END OF THE STAAD.Pro RUN ***********         
 
-               **** DATE= NOV  7,2015   TIME= 13:52:53 ****
+               **** DATE= NOV  7,2015   TIME= 16:13:51 ****
 
          ************************************************************
          *        For questions on STAAD.Pro, please contact        *

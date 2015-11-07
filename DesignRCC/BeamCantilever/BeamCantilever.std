@@ -1,0 +1,121 @@
+STAAD PLANE
+*
+* ___*** 1st line has to start with STAAD !!! ***___
+*
+* Let us learn STAAD Pro as Hacker
+* If you are Geek, like coding, you may like this approach
+* Copy right: H.S.Rai
+*
+* The 1st command start with STAAD and 2nd word specify type of problem
+* you are attempting to solve. It may be PLANE, SPACE, GIRD, TRUSS
+* The 1st problem we are going to solve is a Simply Supported Beam
+* so we use PLANE, that is meant for 2D frame structures.
+*
+* All lines starting with "*" is a comment, only for reader, and
+* STAAD Pro software will ignore all such lines.
+*
+* Information related to JOB you are undertaking and team working on
+* JOB is given in a block "JOB INFORMATION" which includes all lines
+* between line "START JOB INFORMATION" and "END JOB INFORMATION"
+* Job information starts below:
+START JOB INFORMATION
+* Name of Job: In current case a problem of "Cantilevered Beam", so is
+* written as "Cantilever Beam":
+JOB NAME Cantilever Beam
+* Name of client is typed after CLIENT as shown below
+JOB CLIENT Hardeep Singh Rai
+* Job number, if you keep record in your office, in xample, we used
+* "Pb/Ldh/102" as Job Number
+JOB NO Pb/Ldh/102
+* Corrections /  Improvements resuts in many revisions, so keep track
+* of revision in key word "REV"
+JOB REV 1.0
+* If current analysis is for a part of some big structure, then refer
+* it after "PART"
+JOB PART Beam
+* Reference number, for record / documentation purpose
+JOB REF Tutorial/01
+* Any comment for your help / reference
+JOB COMMENT Analysis of Cantilever Beam
+* Normaly a team consist of Engineer, who create this file for analysis
+* and design, then it is checked by a checker and further approved by
+* their boss. Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
+* date of their action is recorded below:
+ENGINEER NAME HSR
+CHECKER NAME NR
+APPROVED NAME AR
+ENGINEER DATE 07-Nov-15
+CHECKER DATE 07-Nov-15
+APPROVED DATE 07-Nov-15
+END JOB INFORMATION
+* Job information ends with above line
+* The length of characters in each line of this input file is limited
+* to 79.
+* Any thing written after this will b eignored and thus results in
+* error when you run STAAD-Pro
+INPUT WIDTH 79
+* All examples are with units meter and Newtons for linear dimensions
+* and force respectively.
+* The joint (End points of frame members, also called "node") are
+* numberes, and each number is follwoed by x y z value of node. Each
+* one such set it terminated by ";" enabling you to put more
+* information in a line, like 2 nodes are created in a line below:
+UNIT MMS NEWTON
+JOINT COORDINATES
+1 0 0 0; 2 3000 0 0;
+* Following define members of frame (Beam or Column), 1st number is
+* member number, and next two are starting node (Joint) number and
+* end node number, terminatin by ";", to enable multiple member
+* definition in a line.
+MEMBER INCIDENCES
+1 1 2;
+* Material properties to be used in analysis, many materila may be
+* defined in block names "DEFINE MATERIAL", between START AND END.
+DEFINE MATERIAL START
+ISOTROPIC CONCRETE
+E 22000
+POISSON 0.17
+DENSITY 2.4e-005
+ALPHA 1e-005
+DAMP 0.05
+TYPE CONCRETE
+STRENGTH FCU 25
+END DEFINE MATERIAL
+* Geometric (X-Sectional) properties of various sections used
+MEMBER PROPERTY AMERICAN
+1 PRIS YD 500 ZD 300
+* BETA defines orientation of section for members
+CONSTANTS
+BETA 0 ALL
+* Material assigned to various members
+MATERIAL CONCRETE ALL
+* Support conditions: Simply supported, so both are taken as pinned.
+SUPPORTS
+1 FIXED
+* Load Definitions
+LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
+MEMBER LOAD
+* UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
+* axis
+1 UNI GY -40
+* Do analysis and prind maximin information
+PERFORM ANALYSIS PRINT ALL
+* For RCC design: Ablock between start and end of "Concrete Design"
+* Use IS 456
+START CONCRETE DESIGN
+CODE INDIAN
+* Clear cover, fck (Concrete grade), fy for main and secondary reinforcement.
+CLEAR 40 ALL
+FC 20 ALL
+FYMAIN 415 ALL
+FYSEC 415 ALL
+* Track governs amount of information you wish to have. Use 2 for maximum
+TRACK 2 ALL
+* Specify members you wish to design as beam
+DESIGN BEAM 1
+* To know quantites used (may be used for estimation / cost analysis).
+CONCRETE TAKE
+* To finish RCC design
+END CONCRETE DESIGN
+* To tell end of STADD Pro file.
+FINISH
