@@ -8,7 +8,7 @@ STAAD PLANE
 *
 * The 1st command start with STAAD and 2nd word specify type of problem
 * you are attempting to solve. It may be PLANE, SPACE, GIRD, TRUSS
-* The 1st problem we are going to solve is a Simply Supported Beam
+* The 1st problem we are going to solve is a Cantilever Beam
 * so we use PLANE, that is meant for 2D frame structures.
 *
 * All lines starting with "*" is a comment, only for reader, and
@@ -19,24 +19,24 @@ STAAD PLANE
 * between line "START JOB INFORMATION" and "END JOB INFORMATION"
 * Job information starts below:
 START JOB INFORMATION
-* Name of Job: In current case a problem of "Cantilevered Beam", so is
-* written as "Cantilever Beam":
-JOB NAME Cantilever Beam
+* Name of Job: In current case a problem of "Cantilevered Beam", which
+* represents "Observation Deck":
+JOB NAME Observation Deck
 * Name of client is typed after CLIENT as shown below
 JOB CLIENT Hardeep Singh Rai
 * Job number, if you keep record in your office, in xample, we used
 * "Pb/Ldh/102" as Job Number
 JOB NO Pb/Ldh/102
-* Corrections /  Improvements resuts in many revisions, so keep track
+* Corrections /  Improvements resut in many revisions, so keep track
 * of revision in key word "REV"
 JOB REV 1.0
 * If current analysis is for a part of some big structure, then refer
-* it after "PART"
+* it after "PART". Current project contain slab, beam, parapet.
 JOB PART Beam
 * Reference number, for record / documentation purpose
 JOB REF Tutorial/01
 * Any comment for your help / reference
-JOB COMMENT Analysis of Cantilever Beam
+JOB COMMENT Analysis of Cantilever Beam of Observation Deck.
 * Normaly a team consist of Engineer, who create this file for analysis
 * and design, then it is checked by a checker and further approved by
 * their boss. Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
@@ -69,7 +69,7 @@ JOINT COORDINATES
 * definition in a line.
 MEMBER INCIDENCES
 1 1 2;
-* Material properties to be used in analysis, many materila may be
+* Material properties to be used in analysis, many material may be
 * defined in block names "DEFINE MATERIAL", between START AND END.
 DEFINE MATERIAL START
 ISOTROPIC CONCRETE
@@ -89,7 +89,8 @@ CONSTANTS
 BETA 0 ALL
 * Material assigned to various members
 MATERIAL CONCRETE ALL
-* Support conditions: Simply supported, so both are taken as pinned.
+* Support conditions: One end is fixed and 2nd is free end.
+* by default all nodes are free, so no need to define that.
 SUPPORTS
 1 FIXED
 * Load Definitions
@@ -98,7 +99,7 @@ MEMBER LOAD
 * UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
 * axis
 1 UNI GY -40
-* Do analysis and prind maximin information
+* Do analysis and prind maximun information
 PERFORM ANALYSIS PRINT ALL
 * For RCC design: Ablock between start and end of "Concrete Design"
 * Use IS 456
