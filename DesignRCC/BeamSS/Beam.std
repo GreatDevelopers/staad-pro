@@ -107,7 +107,7 @@ MEMBER LOAD
 * UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
 * axis
 1 UNI GY -50
-* Do analysis and prind maximin information
+* Do analysis and prind maximun information
 PERFORM ANALYSIS PRINT ALL
 * For RCC design: A block between start and end of "Concrete Design"
 * Use IS 456
