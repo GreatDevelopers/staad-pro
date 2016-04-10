@@ -19,24 +19,26 @@ STAAD PLANE
 * between line "START JOB INFORMATION" and "END JOB INFORMATION"
 * Job information starts below:
 START JOB INFORMATION
-* Name of Job: In current case a problem of "Simply Supported Beam" is
-* abbreviated as "SS Beam" as written below:
-JOB NAME SS Beam
+* Name of Job: In current case a problem of "Simply Supported Beam"
+* which represent a Bridge on Sidhwan Canal:
+JOB NAME Sidhwan Canal Bridge
 * Name of client is typed after CLIENT as shown below
 JOB CLIENT Modi K Bansal
-* Job number, if you keep record in your office, in xample, we used
+* Job number, if you keep record in your office, for example, we used
 * "Pb/Ldh/421" as Job Number
 JOB NO Pb/Ldh/421
-* Corrections /  Improvements resuts in many revisions, so keep track
+* Corrections /  Improvements resut in many revisions, so keep track
 * of revision in key word "REV"
 JOB REV 2.13
 * If current analysis is for a part of some big structure, then refer
-* it after "PART"
+* it after "PART". Like in this case Sidhwan Bridge will have slab,
+* beams, abutments, bearings, foundations; and current file deals
+* with "beam":
 JOB PART Beam
 * Reference number, for record / documentation purpose
 JOB REF 301/2005/04/08
 * Any comment for your help / reference
-JOB COMMENT A trial problem
+JOB COMMENT A problem for demonstation purpose
 * Normaly a team consist of Engineer, who create this file for analysis
 * and design, then it is checked by a checker and further approved by
 * their boss. Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
@@ -54,22 +56,23 @@ END JOB INFORMATION
 * Any thing written after this will b eignored and thus results in
 * error when you run STAAD-Pro
 INPUT WIDTH 79
-* All examples are with units meter and Newtons for linear dimensions
+* All examples are with units "mm" and "Newtons" for linear dimensions
 * and force respectively.
-* The joint (End points of frame members, also called "node") are
-* numberes, and each number is follwoed by x y z value of node. Each
+UNIT MMS NEWTON
+* The joints (End points of frame members, also called "node") are
+* numbered, and each number is followed by x y z value of node. Each
 * one such set it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
-UNIT MMS NEWTON
 JOINT COORDINATES
 1 0 0 0; 2 4500 0 0;
-* Following define members of frame (Beam or Column), 1st number is
+* Following define members of frame (Beams or Columns), 1st number is
 * member number, and next two are starting node (Joint) number and
 * end node number, terminatin by ";", to enable multiple member
-* definition in a line.
+* definition in a line.It tells how a memeber is form. Which nodes
+* are connected. For this command is "member incidences"
 MEMBER INCIDENCES
 1 1 2;
-* Material properties to be used in analysis, many materila may be
+* Material properties to be used in analysis, many material may be
 * defined in block names "DEFINE MATERIAL", between START AND END.
 DEFINE MATERIAL START
 ISOTROPIC CONCRETE
@@ -87,9 +90,14 @@ MEMBER PROPERTY AMERICAN
 * BETA defines orientation of section for members
 CONSTANTS
 BETA 0 ALL
+* In place of all we can also have a list containing number of
+* members
 * Material assigned to various members
 MATERIAL CONCRETE ALL
-* Support conditions: Simply supported, so both are taken as pinned.
+* Support conditions: Simply supported, so one are taken as
+* pinned and 2nd as roller (represented by FIXED BUT FX MZ, that
+* mean support is fixed with releases in x direction for force
+* and moment along z-axis).
 SUPPORTS
 1 PINNED
 2 FIXED BUT FX MZ
@@ -101,7 +109,7 @@ MEMBER LOAD
 1 UNI GY -50
 * Do analysis and prind maximin information
 PERFORM ANALYSIS PRINT ALL
-* For RCC design: Ablock between start and end of "Concrete Design"
+* For RCC design: A block between start and end of "Concrete Design"
 * Use IS 456
 START CONCRETE DESIGN
 CODE INDIAN
