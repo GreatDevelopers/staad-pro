@@ -1,0 +1,2 @@
+Object Type,Object Name,Error Description
+"Table","MSysACEs","-3831: The current file format no longer supports user-level security. The conversion or compaction process has removed any user-level permissions."

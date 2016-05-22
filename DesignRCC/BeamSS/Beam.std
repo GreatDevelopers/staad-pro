@@ -8,28 +8,29 @@ STAAD PLANE
 *
 * The 1st command start with STAAD and 2nd word specify type of problem
 * you are attempting to solve. It may be PLANE, SPACE, GRID, TRUSS
-* The 1st problem we are going to solve is a Simply Supported Beam
-* so we use PLANE, that is meant for 2D frame structures.
+* The 1st problem, we are going to solve, is a Simply Supported Beam
+* so we use "PLANE", which is meant for 2D frame structures.
 *
-* All lines starting with "*" is a comment, only for reader, and
-* STAAD Pro software will ignore all such lines.
+* All lines starting with "*" [i.e. star / asterisk withour double
+* quotes; like this line] are comments, only for reader, and
+* STAAD.Pro software will ignore all such lines.
 *
-* Information related to JOB you are undertaking and team working on
-* JOB is given in a block "JOB INFORMATION" which includes all lines
-* between line "START JOB INFORMATION" and "END JOB INFORMATION"
-* Job information starts below:
+* Information related to JOB (Design or Analysis project) you are
+* undertaking and team working on JOB is given in a block "JOB
+* INFORMATION" which includes all lines between line "START JOB
+* INFORMATION" and "END JOB INFORMATION". Job information starts below:
 START JOB INFORMATION
 * Name of Job: In current case a problem of "Simply Supported Beam"
 * which represent a Bridge on Sidhwan Canal:
 JOB NAME Sidhwan Canal Bridge
 * Name of client is typed after CLIENT as shown below
 JOB CLIENT Modi K Bansal
-* Job number, if you keep record in your office, for example, we used
+* Job number, if you keep record in your office, for example, we use
 * "Pb/Ldh/421" as Job Number
 JOB NO Pb/Ldh/421
-* Corrections /  Improvements resut in many revisions, so keep track
+* Corrections / Improvements result in many revisions, so keep track
 * of revision in key word "REV"
-JOB REV 2.13
+JOB REV 3.2
 * If current analysis is for a part of some big structure, then refer
 * it after "PART". Like in this case Sidhwan Bridge will have slab,
 * beams, abutments, bearings, foundations; and current file deals
@@ -38,11 +39,11 @@ JOB PART Beam
 * Reference number, for record / documentation purpose
 JOB REF 301/2005/04/08
 * Any comment for your help / reference
-JOB COMMENT A problem for demonstation purpose
-* Normaly a team consist of Engineer, who create this file for analysis
+JOB COMMENT A problem for demonstration purpose
+* Normally a team consists of Engineer, who creates a file for analysis
 * and design, then it is checked by a checker and further approved by
-* their boss. Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
-* date of their action is recorded below:
+* their boss. Names of ENGINEER, CHECKER, APPROVING AUTHORITY and
+* dates of their action are recorded below:
 ENGINEER NAME SB
 CHECKER NAME ABC
 APPROVED NAME TCC
@@ -51,15 +52,25 @@ CHECKER DATE 09-Apr-15
 APPROVED DATE 10-Apr-15
 END JOB INFORMATION
 * Job information ends with above line
-* The length of characters in each line of this input file is limited
-* to 79.
-* Any thing written after this will b eignored and thus results in
-* error when you run STAAD-Pro
+* The number of characters in each line of this input file is limited
+* to 79. That mean, number of characters (spaces are also counted) in
+* each line has to be less than 80. Any thing written after this will be
+* ignored and thus results in error or wrong results, when you run
+* STAAD-Pro
 INPUT WIDTH 79
-* All examples are with units "mm" and "Newtons" for linear dimensions
-* and force respectively.
+* All examples are with units "mm" for linear dimensions and "Newtons" 
+* for forces. It is permitted to use this command as many time as
+* required, to change units for values to be entered.
+* Linear dimension may be in INCHES, FEET (FT or FO), CM, METER, MMS
+* Force may be in KIP, POUND, KG, MTON, NEWTON, KNS, MNS
+* The input unit for angles / rotations is degrees. However, in JOINT
+* DISPLACEMENT output, the rotations are provided in radians.
+* In output, the units are clearly specified by the program.
 UNIT MMS NEWTON
-* The joints (End points of frame members, also called "node") are
+* For all commands, 1st three characters may be used as abbreviated
+* command. The above command be entered as: UNI MMS NEW
+*
+* The joints (End points of frame members, also called "nodes") are
 * numbered, and each number is followed by x y z value of node. Each
 * one such set it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
@@ -68,12 +79,12 @@ JOINT COORDINATES
 * Following define members of frame (Beams or Columns), 1st number is
 * member number, and next two are starting node (Joint) number and
 * end node number, terminatin by ";", to enable multiple member
-* definition in a line.It tells how a memeber is form. Which nodes
+* definition in a line. It tells how a memeber is formed, which nodes
 * are connected. For this command is "member incidences"
 MEMBER INCIDENCES
 1 1 2;
-* Material properties to be used in analysis, many material may be
-* defined in block names "DEFINE MATERIAL", between START AND END.
+* For material properties to be used in analysis, many material may be
+* defined in block named "DEFINE MATERIAL", between START AND END.
 DEFINE MATERIAL START
 ISOTROPIC CONCRETE
 E 21718.5

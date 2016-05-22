@@ -1,0 +1,10 @@
+TableName,Field0,Field1,Field2,Field3,Field4,Field5,Field6,Field7,Field8,Field9,Field10,Field11,Field12,Field13,Field14,Field15,Field16,Field17,Field18,Field19,Field20,Field21
+"Angle","NUMBER","TEXT","TEXT","mm","mm","mm","cm^2","mm","mm",,,,,,,,,,,,,
+"Channel","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3","mm","mm","mm","mm","mm","mm",,
+"I Shape","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3",,,,,,,,
+"M Shape","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3",,,,,,,,
+"Pipe","NUMBER","TEXT","TEXT","mm","mm","cm^2","cm^4","cm^3",,,,,,,,,,,,,,
+"S Shape","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3","mm","mm","mm","mm","mm","mm","mm","mm"
+"T Shape","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3",,,,,,,,
+"Tube","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","cm^4","cm^4","cm^4","cm^3","cm^3",,,,,,,,,,
+"W Shape","NUMBER","TEXT","TEXT","cm^2","mm","mm","mm","mm","cm^4","cm^4","cm","cm^4","cm^3","cm^3",,,,,,,,
