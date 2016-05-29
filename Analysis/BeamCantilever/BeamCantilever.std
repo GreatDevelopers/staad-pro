@@ -89,7 +89,7 @@ DEFINE MATERIAL START
 * For every material, you need to give type and name. Type may be
 * isotropic or 2Dorthotropic, and name may be any name to be given by
 * user
-ISOTROPIC CONCRETE
+ISOTROPIC M25CONC
 E 22000
 POISSON 0.15
 DENSITY 2.5e-005
@@ -99,13 +99,12 @@ TYPE CONCRETE
 STRENGTH FCU 25
 END DEFINE MATERIAL
 * Geometric (X-Sectional) properties of various sections used
-MEMBER PROPERTY AMERICAN
+MEMBER PROPERTY
+* In following line PRIS stands for prismatic section. YD and ZD
+* represent Depth and Width of rectangular section: 
 1 PRIS YD 500 ZD 300
-* BETA defines orientation of section for members
-CONSTANTS
-BETA 0 ALL
 * Material assigned to various members
-MATERIAL CONCRETE ALL
+MATERIAL M25CONC ALL
 * Support conditions: One end is fixed and 2nd is free end.
 * by default all nodes are free, so no need to define that.
 SUPPORTS
@@ -118,22 +117,5 @@ MEMBER LOAD
 1 UNI GY -40
 * Do analysis and prind maximun information
 PERFORM ANALYSIS PRINT ALL
-* For RCC design: Ablock between start and end of "Concrete Design"
-* Use IS 456
-START CONCRETE DESIGN
-CODE INDIAN
-* Clear cover, fck (Concrete grade), fy for main and secondary reinforcement.
-CLEAR 40 ALL
-FC 20 ALL
-FYMAIN 415 ALL
-FYSEC 415 ALL
-* Track governs amount of information you wish to have. Use 2 for maximum
-TRACK 2 ALL
-* Specify members you wish to design as beam
-DESIGN BEAM 1
-* To know quantites used (may be used for estimation / cost analysis).
-CONCRETE TAKE
-* To finish RCC design
-END CONCRETE DESIGN
 * To tell end of STADD Pro file.
 FINISH
