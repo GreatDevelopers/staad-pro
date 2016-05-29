@@ -1,0 +1,139 @@
+STAAD PLANE
+*
+* ___*** 1st line has to start with STAAD !!! ***___
+*
+* Let us learn STAAD Pro as Hacker.
+* If you are Geek, like coding, you may like this approach.
+* Copy right: H.S.Rai
+*
+* The 1st command start with STAAD and 2nd word specify type of problem
+* you are attempting to solve. It may be PLANE, SPACE, GRID, TRUSS.
+* The 1st problem we are going to solve is a Cantilever Beam,
+* so we used PLANE, that is meant for 2D frame structures.
+*
+* All lines starting with "*" are comments, only for reader, and
+* STAAD Pro software will ignore all such lines.
+*
+* Information related to JOB you are undertaking, and team working on
+* JOB is given in a block "JOB INFORMATION" which includes all lines
+* between line "START JOB INFORMATION" and "END JOB INFORMATION"
+* Job information starts below:
+START JOB INFORMATION
+* Name of Job: In current case a problem of "Cantilevered Beam", which
+* represents "Observation Deck":
+JOB NAME Observation Deck
+* Name of client is typed after CLIENT as shown below:
+JOB CLIENT Hardeep Singh Rai
+* Job number, if you keep record in your office, in this example, we used
+* "Pb/Ldh/101" as Job Number.
+JOB NO Pb/Ldh/102
+* Corrections / Improvements resut in many revisions, so keep track
+* of revision in key word "REV".
+JOB REV 1.0
+* If current analysis is for a part of some big structure, then refer
+* it after "PART". Current project contain slab, beam, parapet, and this
+* file deals with "Beam" only.
+JOB PART Beam
+* Reference number, for record / documentation purpose:
+JOB REF HSR/OD/01
+* Any comment for your help / reference:
+JOB COMMENT Analysis of Cantilever Beam of Observation Deck.
+* Normaly a team consist of Engineer, who create this file for analysis,
+* then it is checked by a "Checker" and further approved by
+* their "Boss". Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
+* date of their action is recorded below:
+ENGINEER NAME HSR
+CHECKER NAME NR
+APPROVED NAME AR
+ENGINEER DATE 07-Nov-15
+CHECKER DATE 07-Nov-15
+APPROVED DATE 07-Nov-15
+END JOB INFORMATION
+* Job information ends with above line.
+* The length of characters in each line of this input file is limited
+* to 79.
+* Any thing written after this will be ignored and thus results in
+* error (or wrong results) when you run STAAD-Pro.
+INPUT WIDTH 79
+* All examples are with units millimeters for linear dimensions
+UNIT MMS NEWTON
+* and Newtons for forces respectively.
+* The joint (End points of frame members [Beam or Column], also called
+* "node") are numberes, and each number is follwoed by x y z value of
+* node. Each one "such set" it terminated by ";" enabling you to put more
+* information in a line, like 2 nodes are created in a line below:
+JOINT COORDINATES
+1 0 0 0; 2 3000 0 0;
+* Joint / Nodes definition (their number and position) starts with
+* "JOINT COORDINATES" (There is not START, in this and there is no command
+* to END it) followed by all nodes needed to define structure. It may run
+* into hundreds on lines, in a real structure. Each such line needed to
+* be terminated by ; and should be of length less than 80 characters.
+*
+* Following define members of frame (Beam or Column), 1st number is
+* member number, and next two are starting node (Joint) number and
+* end node number, terminatin by ";", to enable multiple member
+* definition in a line.
+MEMBER INCIDENCES
+1 1 2;
+* Frame member definition (their number and connectivity) starts with
+* "MEMBER INCIDENCES" (There is not START, in this and there is no command
+* to END it) followed by all memebers needed to define structure. It may run
+* into hundreds on lines, in a real structure. Each such line needed to
+* be terminated by ; and should be of length less than 80 characters.
+*
+* Material properties to be used in analysis: Many materials may be
+* defined in block names "DEFINE MATERIAL", between START AND END.
+DEFINE MATERIAL START
+* Note: START is at the end, and not at the begining of line.
+* For every material, you need to give type and name. Type may be
+* isotropic or 2Dorthotropic, and name may be any name to be given by
+* user
+ISOTROPIC CONCRETE
+E 22000
+POISSON 0.15
+DENSITY 2.5e-005
+ALPHA 1.2e-005
+DAMP 0.05
+TYPE CONCRETE
+STRENGTH FCU 25
+END DEFINE MATERIAL
+* Geometric (X-Sectional) properties of various sections used
+MEMBER PROPERTY AMERICAN
+1 PRIS YD 500 ZD 300
+* BETA defines orientation of section for members
+CONSTANTS
+BETA 0 ALL
+* Material assigned to various members
+MATERIAL CONCRETE ALL
+* Support conditions: One end is fixed and 2nd is free end.
+* by default all nodes are free, so no need to define that.
+SUPPORTS
+1 FIXED
+* Load Definitions
+LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
+MEMBER LOAD
+* UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
+* axis
+1 UNI GY -40
+* Do analysis and prind maximun information
+PERFORM ANALYSIS PRINT ALL
+* For RCC design: Ablock between start and end of "Concrete Design"
+* Use IS 456
+START CONCRETE DESIGN
+CODE INDIAN
+* Clear cover, fck (Concrete grade), fy for main and secondary reinforcement.
+CLEAR 40 ALL
+FC 20 ALL
+FYMAIN 415 ALL
+FYSEC 415 ALL
+* Track governs amount of information you wish to have. Use 2 for maximum
+TRACK 2 ALL
+* Specify members you wish to design as beam
+DESIGN BEAM 1
+* To know quantites used (may be used for estimation / cost analysis).
+CONCRETE TAKE
+* To finish RCC design
+END CONCRETE DESIGN
+* To tell end of STADD Pro file.
+FINISH
