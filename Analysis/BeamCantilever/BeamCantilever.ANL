@@ -1,0 +1,281 @@
+                                                                 PAGE NO.    1
+
+
+
+             ****************************************************        
+             *                                                  *        
+             *           STAAD.Pro V8i SELECTseries4            *        
+             *           Version  20.07.09.31                   *        
+             *           Proprietary Program of                 *        
+             *           Bentley Systems, Inc.                  *        
+             *           Date=    MAY 30, 2016                  *        
+             *           Time=     9:37:26                      *        
+             *                                                  *        
+             *      USER ID:                                    *        
+             ****************************************************        
+
+
+
+     1. STAAD PLANE
+INPUT FILE: BeamCantilever.STD
+     2. *
+     3. * ___*** 1ST LINE HAS TO START WITH STAAD !!! ***___
+     4. *
+     5. * LET US LEARN STAAD PRO AS A HACKER.
+     6. * IF YOU ARE GEEK, LIKE CODING, YOU MAY LIKE THIS APPROACH.
+     7. * COPY RIGHT: H.S.RAI
+     8. *
+     9. * THE 1ST COMMAND START WITH STAAD AND 2ND WORD SPECIFY TYPE OF PROBLEM
+    10. * YOU ARE ATTEMPTING TO SOLVE. IT MAY BE PLANE, SPACE, GRID, TRUSS.
+    11. * THE 1ST PROBLEM WE ARE GOING TO SOLVE IS A CANTILEVER BEAM,
+    12. * SO WE USED PLANE, THAT IS MEANT FOR 2D FRAME STRUCTURES.
+    13. *
+    14. * ALL LINES STARTING WITH "*" ARE COMMENTS, ONLY FOR READER, AND
+    15. * STAAD PRO SOFTWARE WILL IGNORE ALL SUCH LINES.
+    16. *
+    17. * INFORMATION RELATED TO JOB YOU ARE UNDERTAKING, AND TEAM WORKING ON
+    18. * JOB IS GIVEN IN A BLOCK "JOB INFORMATION" WHICH INCLUDES ALL LINES
+    19. * BETWEEN LINE "START JOB INFORMATION" AND "END JOB INFORMATION"
+    20. * JOB INFORMATION STARTS BELOW:
+    21. START JOB INFORMATION
+    22. * NAME OF JOB: IN CURRENT CASE A PROBLEM OF "CANTILEVERED BEAM", WHICH
+    23. * REPRESENTS "OBSERVATION DECK":
+    24. JOB NAME OBSERVATION DECK
+    25. * NAME OF CLIENT IS TYPED AFTER CLIENT AS SHOWN BELOW:
+    26. JOB CLIENT HARDEEP SINGH RAI
+    27. * JOB NUMBER, IF YOU KEEP RECORD IN YOUR OFFICE, IN THIS EXAMPLE, WE USED
+    28. * "PB/LDH/101" AS JOB NUMBER.
+    29. JOB NO PB/LDH/102
+    30. * CORRECTIONS / IMPROVEMENTS RESUT IN MANY REVISIONS, SO KEEP TRACK
+    31. * OF REVISION IN KEY WORD "REV".
+    32. JOB REV 1.0
+    33. * IF CURRENT ANALYSIS IS FOR A PART OF SOME BIG STRUCTURE, THEN REFER
+    34. * IT AFTER "PART". CURRENT PROJECT CONTAIN SLAB, BEAM, PARAPET, AND THIS
+    35. * FILE DEALS WITH "BEAM" ONLY.
+    36. JOB PART BEAM
+    37. * REFERENCE NUMBER, FOR RECORD / DOCUMENTATION PURPOSE:
+    38. JOB REF HSR/OD/01
+     STAAD PLANE                                              -- PAGE NO.    2
+    *                                           
+    39. * ANY COMMENT FOR YOUR HELP / REFERENCE:
+    40. JOB COMMENT ANALYSIS OF CANTILEVER BEAM OF OBSERVATION DECK.
+    41. * NORMALY A TEAM CONSIST OF ENGINEER, WHO CREATE THIS FILE FOR ANALYSIS,
+    42. * THEN IT IS CHECKED BY A "CHECKER" AND FURTHER APPROVED BY
+    43. * THEIR "BOSS". NAME OF ENGINEER, CHECKER AND APPROVING AUTHORITY AND
+    44. * DATE OF THEIR ACTION IS RECORDED BELOW:
+    45. ENGINEER NAME HSR
+    46. CHECKER NAME NR
+    47. APPROVED NAME AR
+    48. ENGINEER DATE 07-NOV-15
+    49. CHECKER DATE 07-NOV-15
+    50. APPROVED DATE 07-NOV-15
+    51. END JOB INFORMATION
+    52. * JOB INFORMATION ENDS WITH ABOVE LINE.
+    53. * THE LENGTH OF CHARACTERS IN EACH LINE OF THIS INPUT FILE IS LIMITED
+    54. * TO 79.
+    55. * ANY THING WRITTEN AFTER THIS WILL BE IGNORED AND THUS RESULTS IN
+    56. * ERROR (OR WRONG RESULTS) WHEN YOU RUN STAAD-PRO.
+    57. INPUT WIDTH 79
+    58. * ALL EXAMPLES ARE WITH UNITS MILLIMETERS FOR LINEAR DIMENSIONS
+    59. * AND NEWTONS FOR FORCES RESPECTIVELY.
+    60. * THE JOINT (END POINTS OF FRAME MEMBERS [BEAM OR COLUMN], ALSO CALLED
+    61. * "NODE") ARE NUMBERED, AND EACH NUMBER IS FOLLWOED BY X Y Z VALUE OF
+    62. * NODE. EACH ONE "SUCH SET" IT TERMINATED BY ";" ENABLING YOU TO PUT MORE
+    63. * INFORMATION IN A LINE, LIKE 2 NODES ARE CREATED IN A LINE BELOW:
+    64. UNIT MMS NEWTON
+    65. JOINT COORDINATES
+    66. 1 0 0 0; 2 3000 0 0
+    67. * JOINT / NODES DEFINITION (THEIR NUMBER AND POSITION) STARTS WITH
+    68. * "JOINT COORDINATES" (THERE IS NOT START, IN THIS AND THERE IS NO COMMAND
+    69. * TO END IT) FOLLOWED BY ALL NODES NEEDED TO DEFINE STRUCTURE. IT MAY RUN
+    70. * INTO HUNDREDS ON LINES, IN A REAL STRUCTURE. EACH SUCH LINE NEEDED TO
+    71. * BE TERMINATED BY ; AND SHOULD BE OF LENGTH LESS THAN 80 CHARACTERS.
+    72. *
+    73. * FOLLOWING DEFINE MEMBERS OF FRAME (BEAM OR COLUMN), 1ST NUMBER IS
+    74. * MEMBER NUMBER, AND NEXT TWO ARE STARTING NODE (JOINT) NUMBER AND
+    75. * END NODE NUMBER, TERMINATIN BY ";", TO ENABLE MULTIPLE MEMBER
+    76. * DEFINITION IN A LINE.
+    77. MEMBER INCIDENCES
+    78. 1 1 2
+    79. * FRAME MEMBER DEFINITION (THEIR NUMBER AND CONNECTIVITY) STARTS WITH
+    80. * "MEMBER INCIDENCES" (THERE IS NOT START, IN THIS AND THERE IS NO COMMAND
+    81. * TO END IT) FOLLOWED BY ALL MEMEBERS NEEDED TO DEFINE STRUCTURE. IT MAY RUN
+    82. * INTO HUNDREDS ON LINES, IN A REAL STRUCTURE. EACH SUCH LINE NEEDED TO
+    83. * BE TERMINATED BY ; AND SHOULD BE OF LENGTH LESS THAN 80 CHARACTERS.
+    84. *
+    85. * MATERIAL PROPERTIES TO BE USED IN ANALYSIS: MANY MATERIALS MAY BE
+    86. * DEFINED IN BLOCK NAMES "DEFINE MATERIAL", BETWEEN START AND END.
+    87. * NOTE: START IS AT THE END, AND NOT AT THE BEGINING OF LINE.
+    88. * FOR EVERY MATERIAL, YOU NEED TO GIVE TYPE AND NAME. TYPE MAY BE
+    89. * ISOTROPIC OR 2DORTHOTROPIC, AND NAME MAY BE ANY NAME TO BE GIVEN BY
+    90. * USER
+    91. DEFINE MATERIAL START
+    92. ISOTROPIC M25CONC
+    93. E 22000
+    94. POISSON 0.15
+     STAAD PLANE                                              -- PAGE NO.    3
+    *                                           
+    95. DENSITY 2.5E-005
+    96. ALPHA 1.2E-005
+    97. DAMP 0.05
+    98. TYPE CONCRETE
+    99. STRENGTH FCU 25
+   100. END DEFINE MATERIAL
+   101. * BY STAAD PRO MATERIAL M25CONC ALL
+   102. * GEOMETRIC (X-SECTIONAL) PROPERTIES OF VARIOUS SECTIONS USED
+   103. MEMBER PROPERTY AMERICAN
+   104. * IN FOLLOWING LINE PRIS STANDS FOR PRISMATIC SECTION. YD AND ZD
+   105. * REPRESENT DEPTH AND WIDTH OF RECTANGULAR SECTION:
+   106. 1 PRIS YD 500 ZD 300
+   107. * MATERIAL ASSIGNED TO VARIOUS MEMBERS. IN FOLLOWING LINE WE USE 1,
+   108. * BUT IF ALL MEMBERS OF HAVING SAME MATERIAL, THE WE MAY USE ALL
+   109. * IN PLACE OF TYPING NUMBER OF ALL MEMBERS.
+   110. CONSTANTS
+   111. MATERIAL M25CONC ALL
+   112. * SUPPORT CONDITIONS: ONE END IS FIXED AND 2ND IS FREE END.
+   113. * BY DEFAULT ALL NODES ARE FREE, SO NO NEED TO DEFINE THAT.
+   114. * FIXED SUPPORT IS PRE-DEFINED.
+   115. SUPPORTS
+   116. 1 FIXED
+   117. * LOAD DEFINITIONS
+   118. * IT STARTS WITH LOAD, THEN IDENTIFY IT WITH A UBIQUE NUMBER, MENTION
+   119. * TYPE OF LOAD AFTER LOADTYPE AND USER DEFINED TITLE AFTER TITLE
+   120. LOAD 1 LOADTYPE LIVE  TITLE LIVE LOAD
+   121. * UNDER ANY LOAD DEFINITION, WE MAY HAVE LOAD APPLIED ON SPAN (CALLED
+   122. * MEMBER LOAD) OR APPLIED TO JOINT. FOLLOWING IS THE CASE OF MEMBER
+   123. * LOAD:
+   124. MEMBER LOAD
+   125. * THERE MIGHT BE DIFFERENT NUMBER OF LOADS, LIKE UNIFORMLY DISTRIBUTED
+   126. * LOAD (UDL), CONCENTRATED (POINT) LOAD. IN THIS EXAMPLE, UDL IS TAKEN.
+   127. * UDL (REPRESENTED BY UNI) OF 50 KN/M (N/MM) IN NEGATIVE DIRECTION (I.E
+   128. * DOWNWARD) GLOBAL Y REPRESENTED BY GY:
+   129. * AXIS
+   130. 1 UNI GY -40
+   131. * DO ANALYSIS AND PRIND MAXIMUN INFORMATION
+   132. PERFORM ANALYSIS PRINT ALL
+
+
+
+            P R O B L E M   S T A T I S T I C S
+            -----------------------------------
+
+     NUMBER OF JOINTS          2  NUMBER OF MEMBERS       1
+     NUMBER OF PLATES          0  NUMBER OF SOLIDS        0
+     NUMBER OF SURFACES        0  NUMBER OF SUPPORTS      1
+
+ 
+           SOLVER USED IS THE IN-CORE ADVANCED SOLVER
+ 
+     TOTAL PRIMARY LOAD CASES =     1, TOTAL DEGREES OF FREEDOM =       3
+
+     STAAD PLANE                                              -- PAGE NO.    4
+    *                                           
+     STAAD PLANE                                              -- PAGE NO.    5
+    *                                           
+
+
+   LOADING     1  LOADTYPE LIVE  TITLE LIVE LOAD                              
+   -----------
+
+
+   MEMBER LOAD - UNIT NEWT MMS 
+
+   MEMBER     UDL      L1     L2      CON       L     LIN1     LIN2
+
+      1   -40.0000 GY   0.00 3000.00
+
+
+FOR LOADING -     1
+APPLIED JOINT EQUIVALENT LOADS
+ JOINT   FORCE-X     FORCE-Y     FORCE-Z      MOM-X       MOM-Y       MOM-Z
+     1 0.00000E+00-6.00000E+04 0.00000E+00 0.00000E+00 0.00000E+00-3.00000E+07
+     2 0.00000E+00-6.00000E+04 0.00000E+00 0.00000E+00 0.00000E+00 3.00000E+07
+
+          STATIC LOAD/REACTION/EQUILIBRIUM SUMMARY FOR CASE NO.     1
+          LOADTYPE LIVE  TITLE LIVE LOAD                              
+
+
+           CENTER OF FORCE BASED ON Y FORCES ONLY (MMS ).
+         (FORCES IN NON-GLOBAL DIRECTIONS WILL INVALIDATE RESULTS)
+
+                        X =  0.149999996E+04
+                        Y =  0.000000000E+00
+                        Z =  0.000000000E+00
+TOTAL APPLIED LOAD     1
+
+   ***TOTAL APPLIED LOAD ( NEWT MMS  ) SUMMARY (LOADING     1 )
+       SUMMATION FORCE-X =           0.00
+       SUMMATION FORCE-Y =     -120000.00
+       SUMMATION FORCE-Z =           0.00
+
+      SUMMATION OF MOMENTS AROUND THE ORIGIN-
+      MX=           0.00  MY=           0.00  MZ=  -179999943.23
+
+TOTAL REACTION LOAD    1
+
+   ***TOTAL REACTION LOAD( NEWT MMS  ) SUMMARY (LOADING     1 )
+       SUMMATION FORCE-X =           0.00
+       SUMMATION FORCE-Y =      120000.00
+       SUMMATION FORCE-Z =           0.00
+
+      SUMMATION OF MOMENTS AROUND THE ORIGIN-
+      MX=           0.00  MY=           0.00  MZ=   179999999.81
+
+
+   MAXIMUM DISPLACEMENTS (  CM  /RADIANS) (LOADING      1)
+             MAXIMUMS    AT NODE
+      X =  0.00000E+00       0
+      Y = -6.03850E-01       2
+      Z =  0.00000E+00       0
+      RX=  0.00000E+00       0
+      RY=  0.00000E+00       0
+      RZ= -2.61818E-03       2
+
+     STAAD PLANE                                              -- PAGE NO.    6
+    *                                           
+
+
+   EXTERNAL AND INTERNAL JOINT LOAD SUMMARY ( NEWT MMS  )-
+
+   JT     EXT FX/   EXT FY/   EXT FZ/    EXT MX/    EXT MY/    EXT MZ/
+          INT FX    INT FY    INT FZ     INT MX     INT MY     INT MZ
+
+                                                                      SUPPORT=1
+     1  0.00E+00 -6.00E+04  0.00E+00  0.000E+00  0.000E+00 -3.000E+07
+        0.00E+00 -6.00E+04  0.00E+00  0.000E+00  0.000E+00 -1.500E+08  111111
+
+
+
+   ************ END OF DATA FROM INTERNAL STORAGE ************
+
+
+   133. * TO TELL END OF STADD PRO FILE.
+   134. * EVERY FILE ENDS WITH COMMAND FINISH:
+   135. FINISH
+
+
+             *********** END OF THE STAAD.Pro RUN ***********         
+
+               **** DATE= MAY 30,2016   TIME=  9:37:27 ****
+
+     STAAD PLANE                                              -- PAGE NO.    7
+    *                                           
+         ************************************************************
+         *        For questions on STAAD.Pro, please contact        *
+         *        Bentley Systems or Partner offices                *
+         *                                                          *
+         *            Telephone             Web / Email             *
+         *  USA       +1  (714) 974-2500                            *
+         *  UK        +44 (0) 808 101 9246                          *
+         *  SINGAPORE +65 6225-6158                                 *
+         *  FRANCE    +33 (0) 1 55238400                            *
+         *  GERMANY   +49 0931 40468                                *
+         *  INDIA     +91 (033) 4006-2021                           *
+         *  JAPAN     +81 (03)5952-6500    http://www.ctc-g.co.jp   *
+         *  CHINA     +86 21 6288 4040                              *
+         *  THAILAND  +66 (0)2645-1018/19 partha.p@reisoftwareth.com*
+         *                                                          *
+         *  Worldwide  http://selectservices.bentley.com/en-US/     *
+         *                                                          *
+         ************************************************************
+                                                                     

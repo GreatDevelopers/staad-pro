@@ -56,12 +56,12 @@ END JOB INFORMATION
 * error (or wrong results) when you run STAAD-Pro.
 INPUT WIDTH 79
 * All examples are with units millimeters for linear dimensions
-UNIT MMS NEWTON
 * and Newtons for forces respectively.
 * The joint (End points of frame members [Beam or Column], also called
 * "node") are numbered, and each number is follwoed by x y z value of
 * node. Each one "such set" it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
+UNIT MMS NEWTON
 JOINT COORDINATES
 1 0 0 0; 2 3000 0 0;
 * Joint / Nodes definition (their number and position) starts with
@@ -84,11 +84,11 @@ MEMBER INCIDENCES
 *
 * Material properties to be used in analysis: Many materials may be
 * defined in block names "DEFINE MATERIAL", between START AND END.
-DEFINE MATERIAL START
 * Note: START is at the end, and not at the begining of line.
 * For every material, you need to give type and name. Type may be
 * isotropic or 2Dorthotropic, and name may be any name to be given by
 * user
+DEFINE MATERIAL START
 ISOTROPIC M25CONC
 E 22000
 POISSON 0.15
@@ -98,14 +98,16 @@ DAMP 0.05
 TYPE CONCRETE
 STRENGTH FCU 25
 END DEFINE MATERIAL
+* By STAAD Pro MATERIAL M25CONC ALL
 * Geometric (X-Sectional) properties of various sections used
-MEMBER PROPERTY
+MEMBER PROPERTY AMERICAN
 * In following line PRIS stands for prismatic section. YD and ZD
-* represent Depth and Width of rectangular section: 
+* represent Depth and Width of rectangular section:
 1 PRIS YD 500 ZD 300
 * Material assigned to various members. In following line we use 1,
 * but if all members of having same material, the we may use ALL
 * in place of typing number of all members.
+CONSTANTS
 MATERIAL M25CONC ALL
 * Support conditions: One end is fixed and 2nd is free end.
 * by default all nodes are free, so no need to define that.
