@@ -2,7 +2,7 @@ STAAD PLANE
 *
 * ___*** 1st line has to start with STAAD !!! ***___
 *
-* Let us learn STAAD Pro as Hacker.
+* Let us learn STAAD Pro as a Hacker.
 * If you are Geek, like coding, you may like this approach.
 * Copy right: H.S.Rai
 *
@@ -59,7 +59,7 @@ INPUT WIDTH 79
 UNIT MMS NEWTON
 * and Newtons for forces respectively.
 * The joint (End points of frame members [Beam or Column], also called
-* "node") are numberes, and each number is follwoed by x y z value of
+* "node") are numbered, and each number is follwoed by x y z value of
 * node. Each one "such set" it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
 JOINT COORDINATES
@@ -103,19 +103,31 @@ MEMBER PROPERTY
 * In following line PRIS stands for prismatic section. YD and ZD
 * represent Depth and Width of rectangular section: 
 1 PRIS YD 500 ZD 300
-* Material assigned to various members
+* Material assigned to various members. In following line we use 1,
+* but if all members of having same material, the we may use ALL
+* in place of typing number of all members.
 MATERIAL M25CONC ALL
 * Support conditions: One end is fixed and 2nd is free end.
 * by default all nodes are free, so no need to define that.
+* FIXED support is pre-defined.
 SUPPORTS
 1 FIXED
 * Load Definitions
+* It starts with LOAD, then identify it with a ubique number, mention
+* type of load after LOADTYPE and user defined title after TITLE
 LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
+* Under any load definition, we may have load applied on span (called
+* member load) or applied to joint. Following is the case of member
+* load:
 MEMBER LOAD
-* UDL of 50 kN/m (N/mm) in negative direction (i.e downward) global Y
+* There might be different number of loads, like Uniformly Distributed
+* Load (UDL), Concentrated (Point) load. In this example, UDL is taken.
+* UDL (represented by UNI) of 50 kN/m (N/mm) in negative direction (i.e
+* downward) global Y represented by GY:
 * axis
 1 UNI GY -40
 * Do analysis and prind maximun information
 PERFORM ANALYSIS PRINT ALL
 * To tell end of STADD Pro file.
+* Every file ends with command FINISH:
 FINISH
