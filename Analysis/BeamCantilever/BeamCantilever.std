@@ -18,30 +18,47 @@ STAAD PLANE
 * JOB is given in a block "JOB INFORMATION" which includes all lines
 * between line "START JOB INFORMATION" and "END JOB INFORMATION"
 * Job information starts below:
+*
 START JOB INFORMATION
+*
 * Name of Job: In current case a problem of "Cantilevered Beam", which
 * represents "Observation Deck":
+*
 JOB NAME Observation Deck
+*
 * Name of client is typed after CLIENT as shown below:
+*
 JOB CLIENT Hardeep Singh Rai
+*
 * Job number, if you keep record in your office, in this example, we used
 * "Pb/Ldh/101" as Job Number.
+*
 JOB NO Pb/Ldh/102
+*
 * Corrections / Improvements resut in many revisions, so keep track
 * of revision in key word "REV".
+*
 JOB REV 1.0
+*
 * If current analysis is for a part of some big structure, then refer
 * it after "PART". Current project contain slab, beam, parapet, and this
 * file deals with "Beam" only.
+*
 JOB PART Beam
+*
 * Reference number, for record / documentation purpose:
+*
 JOB REF HSR/OD/01
+*
 * Any comment for your help / reference:
+*
 JOB COMMENT Analysis of Cantilever Beam of Observation Deck.
+*
 * Normaly a team consist of Engineer, who create this file for analysis,
 * then it is checked by a "Checker" and further approved by
 * their "Boss". Name of ENGINEER, CHECKER AND APPROVING AUTHORITY and
 * date of their action is recorded below:
+*
 ENGINEER NAME HSR
 CHECKER NAME NR
 APPROVED NAME AR
@@ -49,21 +66,26 @@ ENGINEER DATE 07-Nov-15
 CHECKER DATE 07-Nov-15
 APPROVED DATE 07-Nov-15
 END JOB INFORMATION
+*
 * Job information ends with above line.
 * The length of characters in each line of this input file is limited
 * to 79.
 * Any thing written after this will be ignored and thus results in
 * error (or wrong results) when you run STAAD-Pro.
+*
 INPUT WIDTH 79
+*
 * All examples are with units millimeters for linear dimensions
 * and Newtons for forces respectively.
 * The joint (End points of frame members [Beam or Column], also called
 * "node") are numbered, and each number is follwoed by x y z value of
 * node. Each one "such set" it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
+*
 UNIT MMS NEWTON
 JOINT COORDINATES
 1 0 0 0; 2 3000 0 0;
+*
 * Joint / Nodes definition (their number and position) starts with
 * "JOINT COORDINATES" (There is not START, in this and there is no command
 * to END it) followed by all nodes needed to define structure. It may run
@@ -74,8 +96,10 @@ JOINT COORDINATES
 * member number, and next two are starting node (Joint) number and
 * end node number, terminatin by ";", to enable multiple member
 * definition in a line.
+*
 MEMBER INCIDENCES
 1 1 2;
+*
 * Frame member definition (their number and connectivity) starts with
 * "MEMBER INCIDENCES" (There is not START, in this and there is no command
 * to END it) followed by all memebers needed to define structure. It may run
@@ -88,6 +112,7 @@ MEMBER INCIDENCES
 * For every material, you need to give type and name. Type may be
 * isotropic or 2Dorthotropic, and name may be any name to be given by
 * user
+*
 DEFINE MATERIAL START
 ISOTROPIC M25CONC
 E 22000
@@ -98,38 +123,56 @@ DAMP 0.05
 TYPE CONCRETE
 STRENGTH FCU 25
 END DEFINE MATERIAL
-* By STAAD Pro MATERIAL M25CONC ALL
+*
 * Geometric (X-Sectional) properties of various sections used
+*
 MEMBER PROPERTY AMERICAN
+*
 * In following line PRIS stands for prismatic section. YD and ZD
 * represent Depth and Width of rectangular section:
+*
 1 PRIS YD 500 ZD 300
+*
 * Material assigned to various members. In following line we use 1,
 * but if all members of having same material, the we may use ALL
-* in place of typing number of all members.
+* in place of typing number of all members. Material alongwith few
+* other things are given under block started with CONSTANTS:
+*
 CONSTANTS
 MATERIAL M25CONC ALL
+*
 * Support conditions: One end is fixed and 2nd is free end.
 * by default all nodes are free, so no need to define that.
 * FIXED support is pre-defined.
+*
 SUPPORTS
 1 FIXED
+*
 * Load Definitions
 * It starts with LOAD, then identify it with a ubique number, mention
 * type of load after LOADTYPE and user defined title after TITLE
+*
 LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
+*
 * Under any load definition, we may have load applied on span (called
 * member load) or applied to joint. Following is the case of member
 * load:
+*
 MEMBER LOAD
+*
 * There might be different number of loads, like Uniformly Distributed
 * Load (UDL), Concentrated (Point) load. In this example, UDL is taken.
 * UDL (represented by UNI) of 50 kN/m (N/mm) in negative direction (i.e
 * downward) global Y represented by GY:
 * axis
+*
 1 UNI GY -40
-* Do analysis and prind maximun information
+*
+* Do analysis and print maximun amount of information
+*
 PERFORM ANALYSIS PRINT ALL
+*
 * To tell end of STADD Pro file.
 * Every file ends with command FINISH:
+*
 FINISH
