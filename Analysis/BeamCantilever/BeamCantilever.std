@@ -126,7 +126,7 @@ END DEFINE MATERIAL
 *
 * Geometric (X-Sectional) properties of various sections used
 *
-MEMBER PROPERTY AMERICAN
+MEMBER PROPERTY INDIAN
 *
 * In following line PRIS stands for prismatic section. YD and ZD
 * represent Depth and Width of rectangular section:
@@ -135,8 +135,15 @@ MEMBER PROPERTY AMERICAN
 *
 * Material assigned to various members. In following line we use 1,
 * but if all members of having same material, the we may use ALL
-* in place of typing number of all members. Material alongwith few
-* other things are given under block started with CONSTANTS:
+* in place of typing number of all members.  Material or material
+* properties (Modulus of Elasticity, Poisson's ratio, Density,
+* Coefficient of linear expansion, and material damping) of the members
+* and elemen alonwith This command may be used to specify the material
+* properties (Modulus of Elasticity, Poisson's ratio, Density,
+* Coefficient of linear expansion, and material damping) of the members
+* and elements. In addition, this command may also be used to specify
+* the member orientation (BETA angle or reference point/vector) are
+* given under block started with CONSTANTS:
 *
 CONSTANTS
 MATERIAL M25CONC ALL
@@ -149,7 +156,7 @@ SUPPORTS
 1 FIXED
 *
 * Load Definitions
-* It starts with LOAD, then identify it with a ubique number, mention
+* It starts with LOAD, then identify it with a unique number, mention
 * type of load after LOADTYPE and user defined title after TITLE
 *
 LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
@@ -160,8 +167,8 @@ LOAD 1 LOADTYPE Live  TITLE LIVE LOAD
 *
 MEMBER LOAD
 *
-* There might be different number of loads, like Uniformly Distributed
-* Load (UDL), Concentrated (Point) load. In this example, UDL is taken.
+* There might be different types of loads, like Uniformly Distributed
+* Load (UDL), Concentrated (Point) load.  In this example, UDL is taken.
 * UDL (represented by UNI) of 50 kN/m (N/mm) in negative direction (i.e
 * downward) global Y represented by GY:
 * axis
@@ -172,7 +179,10 @@ MEMBER LOAD
 *
 PERFORM ANALYSIS PRINT ALL
 *
-* To tell end of STADD Pro file.
-* Every file ends with command FINISH:
+* To tell end of STADD Pro file, Every file ends with command FINISH.
+* Open this file in STAAD.Pro software, run analysis by pressing function
+* key "Ctrl + F5" or Analyse -> Run analysis from menu. It will save
+* results in a file with same firstname as of this file, but with
+* extension .ANL
 *
 FINISH
