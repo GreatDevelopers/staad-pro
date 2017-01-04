@@ -70,8 +70,8 @@ END JOB INFORMATION
 * Job information ends with above line.
 * The length of characters in each line of this input file is limited
 * to 79.
-* Any thing written after this will be ignored and thus results in
-* error (or wrong results) when you run STAAD-Pro.
+* Any thing written after this will be ignored and thus
+* results in error (or wrong results) when you run STAAD-Pro.
 *
 INPUT WIDTH 79
 *
@@ -117,11 +117,11 @@ DEFINE MATERIAL START
 ISOTROPIC M25CONC
 E 22000
 POISSON 0.15
-DENSITY 2.5e-005
-ALPHA 1.2e-005
-DAMP 0.05
-TYPE CONCRETE
-STRENGTH FCU 25
+* DENSITY 2.5e-005
+* ALPHA 1.2e-005
+* DAMP 0.05
+* TYPE CONCRETE
+* STRENGTH FCU 25
 END DEFINE MATERIAL
 *
 * Geometric (X-Sectional) properties of various sections used

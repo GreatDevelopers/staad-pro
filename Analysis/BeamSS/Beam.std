@@ -58,7 +58,7 @@ END JOB INFORMATION
 * ignored and thus results in error or wrong results, when you run
 * STAAD-Pro
 INPUT WIDTH 79
-* All examples are with units "mm" for linear dimensions and "Newtons" 
+* All examples are with units "mm" for linear dimensions and "Newtons"
 * for forces. It is permitted to use this command as many time as
 * required, to change units for values to be entered.
 * Linear dimension may be in INCHES, FEET (FT or FO), CM, METER, MMS
@@ -66,7 +66,6 @@ INPUT WIDTH 79
 * The input unit for angles / rotations is degrees. However, in JOINT
 * DISPLACEMENT output, the rotations are provided in radians.
 * In output, the units are clearly specified by the program.
-UNIT MMS NEWTON
 * For all commands, 1st three characters may be used as abbreviated
 * command. The above command be entered as: UNI MMS NEW
 *
@@ -74,6 +73,7 @@ UNIT MMS NEWTON
 * numbered, and each number is followed by x y z value of node. Each
 * one such set it terminated by ";" enabling you to put more
 * information in a line, like 2 nodes are created in a line below:
+UNIT MMS NEWTON
 JOINT COORDINATES
 1 0 0 0; 2 4500 0 0;
 * Following define members of frame (Beams or Columns), 1st number is
